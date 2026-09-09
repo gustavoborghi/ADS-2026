@@ -8,7 +8,7 @@ def valid_username(username):
     if len(username) < 3 or len(username) > 12:
         return False
     for caractere in range(len(username)):
-        if not username[caractere].isalpha():
+        if not username[1].isalpha():
             return False
         if not username[caractere].isalnum():
             return False
