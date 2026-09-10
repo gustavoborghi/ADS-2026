@@ -5,6 +5,7 @@ import random
 numero_secreto = random.randint(1, 100)
 input_number = None
 tentativas = 7
+
 while numero_secreto != input_number and tentativas > 0:
     input_number = input("Digite um número: ")
     tentativas -= 1 
