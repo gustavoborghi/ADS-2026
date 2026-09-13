@@ -34,25 +34,33 @@
 #
 # Input: 99/100
 # Output: F
-def tanque():
+def tanque(x, y):
     resultado = x/y*100
     if resultado <= 1:
-        return f"E"
+        return "E"
     elif resultado >= 99:
-        return f"F"
+        return "F"
     else:
-        return f"{resultado}%"
-    
-try:
-    fuel_status = input("Please insert the amount of fuel in fractions: ")
-    split = fuel_status.split("/")
-    x = int(split[0])
-    y = int(split[1])
-    if y == 0:
-       print("You cant divide by zero")
-    else: 
-        print(tanque())
-    
-except IndexError:
-    print("Please input a fraction as 'x/y'")
+        return f"{int(resultado)}%"
+
+while True:    
+    try:
+        fuel_status = input("Please insert the amount of fuel in fractions: ")
+        split = fuel_status.split("/")
+        x = int(split[0])
+        y = int(split[1])
+        if y == 0:
+            print("You can't divide by zero")
+        elif x < 0 or y < 0:
+            print("Please insert only positive numbers")
+        elif x > y:
+            print("You can't have more than 100%")
+        else:
+            print(tanque(x, y))
+            break
+        
+    except IndexError:
+        print("Please input a fraction as 'x/y'")
+    except ValueError:
+        print("Please input a fraction as 'x/y'")
 
