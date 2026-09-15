@@ -3,7 +3,7 @@ import random
 def jogo():
     print("""
     ╔══════════════════════════════════════╗
-    ║         JOGO DE ADIVINHAÇÃO          ║
+    ║         JOGO DE ADIVINHAÇÃO                 ║
     ╚══════════════════════════════════════╝
     """)
  
@@ -11,26 +11,40 @@ def jogo():
     limite, tentativas = escolher_dificuldade()
 
     numero_secreto = random.randint(1, limite)
+    numeros_usados = []
 
     while numero_secreto != input_number and tentativas > 0:
         input_number = input("Digite um número: ")
-        
+
         if input_number.isdigit() and 1 <= int(input_number) <= limite:
-            tentativas -= 1
             input_number = int(input_number)
+
+            if input_number in numeros_usados:
+                print("Você já tentou esse número")
+                print(f"Você tem {tentativas} tentativas restantes.")
+                continue
+
+            numeros_usados.append(input_number)
+            tentativas -= 1
+
+            print(f"Histórico: {numeros_usados}")
+
             if input_number == numero_secreto:
                 print("Parabéns! Você acertou!")
+
             elif input_number < numero_secreto:
                 print(f"O número secreto é maior do que {input_number}")
                 print(f"Você tem {tentativas} tentativas restantes.")
+
             else:
                 print(f"O número secreto é menor do que {input_number}")
                 print(f"Você tem {tentativas} tentativas restantes.")
+
         else:
             print("Por favor, digite um número válido.")
 
-    if tentativas == 0 and numero_secreto != input_number:
-        print(f"Suas tentativas acabaram! O número secreto era: {numero_secreto}")
+        if tentativas == 0 and numero_secreto != input_number:
+            print(f"Suas tentativas acabaram! O número secreto era: {numero_secreto}")
 
 def escolher_dificuldade():
     
