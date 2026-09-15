@@ -1,31 +1,15 @@
 import random
 
 def jogo():
-    print(f"""
+    print("""
     ╔══════════════════════════════════════╗
     ║         JOGO DE ADIVINHAÇÃO          ║
     ╚══════════════════════════════════════╝
     """)
-    print("Tente adivinhar o número que estou pensando entre 1 e 100")
  
-    dificuldade = int(input("Deseja jogar em qual dificuldade: 1, 2 ou 3? "))
     input_number = None
-    limite = None
-    if dificuldade == 1:
-        limite = 50
-        tentativas = 10
-        print("Tente adivinhar o número que estou pensando entre 1 e 50")
-    elif dificuldade == 2:
-        limite = 100
-        tentativas = 7
-        print("Tente adivinhar o número que estou pensando entre 1 e 100")
-    elif dificuldade == 3:
-        limite = 500
-        tentativas = 10
-        print("Tente adivinhar o número que estou pensando entre 1 e 500")
-    else:
-        print("Entre um numero valido")
-    
+    limite, tentativas = escolher_dificuldade()
+
     numero_secreto = random.randint(1, limite)
 
     while numero_secreto != input_number and tentativas > 0:
@@ -47,10 +31,48 @@ def jogo():
 
     if tentativas == 0 and numero_secreto != input_number:
         print(f"Suas tentativas acabaram! O número secreto era: {numero_secreto}")
-while True:
-    jogo()
 
-    jogar_novamente = input("Deseja jogar novamente? (s/n): ".lower())
-    if jogar_novamente != "s":
-        print("Obrigado por jogar!")
-        break
+def escolher_dificuldade():
+    
+    while True:
+        try:
+            dificuldade = int(input("Deseja jogar em qual dificuldade: 1, 2 ou 3? "))       
+            
+            if dificuldade == 1:
+                limite = 50
+                tentativas = 10
+                print("Tente adivinhar o número que estou pensando entre 1 e 50")
+                return limite, tentativas
+            elif dificuldade == 2:
+                limite = 100
+                tentativas = 7
+                print("Tente adivinhar o número que estou pensando entre 1 e 100")
+                return limite, tentativas
+            elif dificuldade == 3:
+                limite = 500
+                tentativas = 5
+                print("Tente adivinhar o número que estou pensando entre 1 e 500")
+                return limite, tentativas
+            else:
+                print("Entre um numero valido")
+        except ValueError:
+            print("Por favor insira um numero valido")
+
+def main():
+    while True:
+        jogo()
+        while True:
+            jogar_novamente = input("Deseja jogar novamente? (s/n): ").lower()
+            if jogar_novamente == "s":
+                print("Vamos de novo!")
+                break
+
+            elif jogar_novamente == "n":
+                print("Obrigado por jogar!")
+                return False
+
+            else:
+                print("Entre uma resposta válida, (s/n)")
+            
+
+main()
