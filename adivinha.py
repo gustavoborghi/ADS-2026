@@ -3,7 +3,7 @@ import random
 def jogo():
     print("""
     ╔══════════════════════════════════════╗
-    ║         JOGO DE ADIVINHAÇÃO                 ║
+    ║         JOGO DE ADIVINHAÇÃO          ║
     ╚══════════════════════════════════════╝
     """)
  
