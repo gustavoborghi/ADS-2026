@@ -1,0 +1,36 @@
+Algoritmo "Salario Novo"
+    Var 
+    salario_atual, salario_novo, salario_final, inss, imposto_renda, aliquota, aumento: real
+Inicio
+
+
+  escreva("Salario Atual: ")
+  leia(salario_atual)
+  
+  //Condiçoes
+  se (salario_atual < 1000) entao
+    aumento <- 0.15
+  senao
+    se (salario_atual <2000) entao
+      aumento <- 0.10
+    senao
+      se (salario_atual <3000) entao
+        aumento <- 0.05
+      senao
+        aumento <- 0.03
+      fimse
+    fimse
+  fimse 
+  
+  
+  //Calculos
+  novo_salario <- salario_atual + salario_atual * aumento
+  imposto_renda <- novo_salario * aliquota
+  inss <- salario_novo * 0.14
+  salario_final <- novo_salario - inss - imposto_renda
+  
+  escreval("Salario liquido: R$", salario_final)
+  escreval("IR: ", aliquota)
+  escreva("Aumento ", aumento)
+  
+FimAlgoritmo
